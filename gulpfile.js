@@ -11,7 +11,7 @@ var build = 'build';
 var buildTest = build + '/test/**/*.js';
 
 gulp.task('clean', function() {
-  return gulp.src(build)
+  return gulp.src(build, {read: false})
              .pipe(clean());
 });
 
