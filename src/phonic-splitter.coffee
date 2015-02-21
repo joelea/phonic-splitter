@@ -1,5 +1,5 @@
 contains = (string, substring) -> string.indexOf(substring) > -1
-graphenes = ['air', 'ea']
+graphenes = ['sh', 'air', 'ea']
 split = (word) ->
   for graphene in graphenes
     if contains(word, graphene)
