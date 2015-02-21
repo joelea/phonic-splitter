@@ -21,14 +21,12 @@ gulp.task('build', ['clean'], function() {
              .pipe(gulp.dest(build));
 });
 
-gulp.task('test', ['niceOutputTest', 'notificationTest'], function() {});
-
-gulp.task('notificationTest', ['build'], function() {
+gulp.task('test', ['build'], function() {
   return gulp.src(buildTest)
              .pipe(mocha({reporter: 'mocha-osx-reporter'}));
 });
 
-gulp.task('niceOutputTest', ['build'], function() {
+gulp.task('niceTest', ['build'], function() {
   return gulp.src(buildTest)
              .pipe(mocha({reporter: 'spec'}));
 });
