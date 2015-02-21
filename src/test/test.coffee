@@ -7,3 +7,4 @@ equivalent = (word, splitWord) ->
 
 describe 'phonicSplitter', ->
   equivalent('a', ['a'])
+  equivalent('at', ['at'])
