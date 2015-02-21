@@ -1,9 +1,14 @@
 contains = (string, substring) -> string.indexOf(substring) > -1
-graphenes = ['ay', 'sh', 'air', 'ea', 'ou', 'ice', 'isl', 'igh', 'er']
+simpleGraphene = (letters) ->
+  word: letters
+  replacement: letters
+
+graphenes = ['ay', 'sh', 'air', 'ea', 'ou', 'ice', 'isl', 'igh', 'er'].map(simpleGraphene)
+
 split = (word) ->
   for graphene in graphenes
-    if contains(word, graphene)
-      return flatten(intersperse([graphene], word.split(graphene).map(split)))
+    if contains(word, graphene.word)
+      return flatten(intersperse([graphene.replacement], word.split(graphene.replacement).map(split)))
 
   word.split('')
 
