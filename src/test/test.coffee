@@ -1,4 +1,4 @@
-split = require('../phonic-splitter').split
+{split, intersperse} = require('../phonic-splitter')
 expect = require('chai').expect
 
 equivalent = (word, splitWord) ->
@@ -11,3 +11,7 @@ describe 'phonicSplitter', ->
   equivalent('cat', ['c', 'a', 't'])
   equivalent('cat', ['c', 'a', 't'])
   equivalent('ear', ['ea', 'r'])
+
+describe 'intersperse', ->
+	it 'should leave an empty list empty', ->
+		expect(intersperse([])).to.deep.equal([])

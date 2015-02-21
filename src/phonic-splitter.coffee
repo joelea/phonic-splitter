@@ -5,4 +5,7 @@ split = (word) ->
 	else
 		word.split('')
 
-module.exports = {split}
+intersperse = (list) -> list
+
+
+module.exports = {split, intersperse}
