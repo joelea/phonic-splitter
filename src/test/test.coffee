@@ -12,6 +12,7 @@ describe 'phonicSplitter', ->
   equivalent('cat', ['c', 'a', 't'])
   equivalent('ear', ['ea', 'r'])
   equivalent('spear', ['s', 'p', 'ea', 'r'])
+  equivalent('spair', ['s', 'p', 'air'])
 
 describe 'intersperse', ->
 	it 'should leave an empty list empty', ->
