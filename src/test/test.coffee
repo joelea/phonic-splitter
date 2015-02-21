@@ -1,6 +1,9 @@
 split = require('../phonic-splitter').split
 expect = require('chai').expect
 
+equivalent = (word, splitWord) ->
+  it '#{word} -> #{splitWord}', ->
+    expect(split(word)).to.eql(splitWord)
+
 describe 'phonicSplitter', ->
-  it 'should split 1 letter words into a singleton list of the 1 letter', ->
-    expect(split('a')).to.eql(['a'])
+  equivalent('a', ['a'])
