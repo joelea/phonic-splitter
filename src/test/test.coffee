@@ -15,6 +15,10 @@ describe 'phonicSplitter', ->
   equivalent('spair', ['s', 'p', 'air'])
   equivalent('shear', ['sh', 'ea', 'r'])
   equivalent('says', ['s', 'ay', 's'])
+  equivalent('louder', ['l', 'ou', 'd', 'er'])
+  equivalent('iceland', ['ice', 'l', 'a', 'n', 'd'])
+  equivalent('island', ['isl', 'a', 'n', 'd'])
+  equivalent('high', ['h', 'igh'])
 
   #"shine" `splitsInto` ["sh", "i_e", "n"]
   #"hone" `splitsInto` ["h", "o_e", "n"]
