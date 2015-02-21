@@ -14,7 +14,10 @@ describe 'phonicSplitter', ->
 
 describe 'intersperse', ->
 	it 'should leave an empty list empty', ->
-		expect(intersperse([])).to.deep.equal([])
+		expect(intersperse(1, [])).to.deep.equal([])
 
 	it 'should leave a singleton list the same', ->
-		expect(intersperse([])).to.deep.equal([])
+		expect(intersperse(2, [1])).to.deep.equal([1])
+
+	it 'should put the element in the middle of a 2 element list', ->
+		expect(intersperse(2, [1,3])).to.deep.equal([1,2,3])

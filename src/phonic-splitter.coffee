@@ -5,7 +5,11 @@ split = (word) ->
 	else
 		word.split('')
 
-intersperse = (list) -> list
+intersperse = (element, list) ->
+  if list.length == 2
+    return [list[0], element, list[1]]
+  else
+    return list
 
 
 module.exports = {split, intersperse}
