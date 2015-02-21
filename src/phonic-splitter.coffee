@@ -6,10 +6,9 @@ split = (word) ->
 		word.split('')
 
 intersperse = (element, list) ->
-  if list.length == 2
-    return [list[0], element, list[1]]
-  else
+  if list.length < 2
     return list
-
+  else
+    return [list[0], element].concat(intersperse(element, list[1..]))
 
 module.exports = {split, intersperse}
