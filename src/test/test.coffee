@@ -14,8 +14,8 @@ describe 'phonicSplitter', ->
   equivalent('spear', ['s', 'p', 'ea', 'r'])
   equivalent('spair', ['s', 'p', 'air'])
   equivalent('shear', ['sh', 'ea', 'r'])
+  equivalent('says', ['s', 'ay', 's'])
 
-  #"shear" `splitsInto` ["sh", "ea", "r"]
   #"shine" `splitsInto` ["sh", "i_e", "n"]
   #"hone" `splitsInto` ["h", "o_e", "n"]
   #"lobe" `splitsInto` ["l", "o_e", "b"]
