@@ -28,7 +28,7 @@ gulp.task('test', ['build'], function() {
 
 gulp.task('niceTest', ['build'], function() {
   return gulp.src(buildTest)
-             .pipe(mocha({reporter: 'spec'}));
+             .pipe(mocha({}));
 });
 
 gulp.task('watch', function() {
