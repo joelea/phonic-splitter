@@ -21,9 +21,16 @@ gulp.task('build', ['clean'], function() {
              .pipe(gulp.dest(build));
 });
 
-gulp.task('test', ['build'], function() {
+gulp.task('test', ['niceOutputTest', 'notificationTest'], function() {});
+
+gulp.task('notificationTest', ['build'], function() {
   return gulp.src(buildTest)
              .pipe(mocha({reporter: 'mocha-osx-reporter'}));
+});
+
+gulp.task('niceOutputTest', ['build'], function() {
+  return gulp.src(buildTest)
+             .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('watch', function() {
