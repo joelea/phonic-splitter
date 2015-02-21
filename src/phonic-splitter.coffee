@@ -1,9 +1,11 @@
 contains = (string, substring) -> string.indexOf(substring) > -1
+graphenes = ['ea']
 split = (word) ->
-  if contains(word, 'ea')
-    return flatten(intersperse(['ea'], word.split('ea').map(split)))
-  else
-    word.split('')
+  for graphene in graphenes
+    if contains(word, graphene)
+      return flatten(intersperse(['ea'], word.split('ea').map(split)))
+
+  word.split('')
 
 intersperse = (element, list) ->
   if list.length < 2
