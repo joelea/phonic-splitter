@@ -21,6 +21,7 @@ describe 'phonicSplitter', ->
   equivalent('high', ['h', 'igh'])
   equivalent('shine', ['sh', 'i_e', 'n'])
   equivalent('shone', ['sh', 'o_e', 'n'])
+  equivalent('lobe', ['l', 'o_e', 'b'])
 
   #"shine" `splitsInto` ["sh", "i_e", "n"]
   #"shine" `splitsInto` ["sh", "i_e", "n"]
