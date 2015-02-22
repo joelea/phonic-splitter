@@ -3,8 +3,15 @@ simpleGraphene = (letters) ->
   word: letters
   replacement: [letters]
 
+magicE = (prefix) ->
+  [vowel, consonant] = prefix
+  return {
+    word: vowel + consonant + 'e'
+    replacement: [vowel + '_e', consonant]
+  }
+
 graphenes = ['ay', 'sh', 'air', 'ea', 'ou', 'ice', 'isl', 'igh', 'er'].map(simpleGraphene)
-                .concat([word: 'ine', replacement: ['i_e', 'n'] ])
+                .concat(['in', 'on'].map(magicE))
 
 split = (word) ->
   for graphene in graphenes

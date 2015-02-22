@@ -20,6 +20,7 @@ describe 'phonicSplitter', ->
   equivalent('island', ['isl', 'a', 'n', 'd'])
   equivalent('high', ['h', 'igh'])
   equivalent('shine', ['sh', 'i_e', 'n'])
+  equivalent('shone', ['sh', 'o_e', 'n'])
 
   #"shine" `splitsInto` ["sh", "i_e", "n"]
   #"shine" `splitsInto` ["sh", "i_e", "n"]
