@@ -10,7 +10,6 @@ var browserify = require('browserify');
 
 var src = 'src';
 var scripts = src + '/**/*.coffee';
-var test = build + '/test/**/*.js';
 var build = './build';
 var buildScripts = build + '/scripts';
 var buildTest = buildScripts + '/test/**/*.js';
@@ -53,18 +52,18 @@ gulp.task('niceTest', ['build'], function() {
              .pipe(mocha({}));
 });
 
-gulp.task('html', function() {
+gulp.task('html', ['clean'], function() {
   return gulp.src(src + '/**/*.html')
              .pipe(gulp.dest(buildDist));
 
 });
 
 gulp.task('dist', ['bundle', 'html'], function() {});
+gulp.task('onChange', ['test', 'dist']);
 
 gulp.task('watch', function() {
     return watch(scripts, function () {
-        gulp.start('test');
-        gulp.start('dist');
+      gulp.start('onChange');
     });
 });
 
