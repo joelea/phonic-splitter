@@ -4,7 +4,7 @@
 magicEPairs = flatten(
   for vowel in vowels
     for consonant in consonants
-      {vowel, consonant}
+      [vowel, consonant]
   )
 
 simpleGraphene = (letters) ->
@@ -12,7 +12,7 @@ simpleGraphene = (letters) ->
   replacement: [letters]
 
 magicE = (prefix) ->
-  {vowel, consonant} = prefix
+  [vowel, consonant] = prefix
   return {
     word: vowel + consonant + 'e'
     replacement: [vowel + '_e', consonant]
