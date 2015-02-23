@@ -52,11 +52,19 @@ gulp.task('niceTest', ['build'], function() {
              .pipe(mocha({}));
 });
 
+gulp.task('html', function() {
+  return gulp.src(src + '/**/*.html')
+             .pipe(gulp.dest(buildDist));
+
+});
+
+gulp.task('dist', ['bundle', 'html'], function() {});
+
 gulp.task('watch', function() {
     return watch(scripts, function () {
         gulp.start('test');
-        gulp.start('bundle');
+        gulp.start('dist');
     });
 });
 
-gulp.task('default', ['watch', 'test', 'bundle'], function() {});
+gulp.task('default', ['watch', 'test', 'dist'], function() {});
