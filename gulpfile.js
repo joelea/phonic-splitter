@@ -4,6 +4,7 @@ var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
 var clean = require('gulp-clean');
 var gutil = require('gulp-util');
+var connect = require('gulp-connect');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
@@ -23,6 +24,12 @@ var bundle = function() {
     .pipe(source('bundle.js'))
     .pipe(gulp.dest(buildDist));
 };
+
+gulp.task('serve', ['dist'], function() {
+  connect.server({
+    root: buildDist
+  });
+});
 
 gulp.task('bundle', ['build'], function() {
   return bundler.bundle()
@@ -67,4 +74,4 @@ gulp.task('watch', function() {
     });
 });
 
-gulp.task('default', ['watch', 'test', 'dist'], function() {});
+gulp.task('default', ['watch', 'test', 'serve'], function() {});
