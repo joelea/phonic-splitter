@@ -1,11 +1,7 @@
-{contains, intersperse, flatten} = require('./lists')
+{contains, intersperse, flatten, crossProduct} = require('./lists')
 {alphabet, vowels, consonants} = require('./alphabet')
 
-magicEPairs = flatten(
-  for vowel in vowels
-    for consonant in consonants
-      [vowel, consonant]
-  )
+magicEPairs = crossProduct(vowels, consonants)
 
 simpleGraphene = (letters) ->
   word: letters
