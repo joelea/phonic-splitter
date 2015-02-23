@@ -69,7 +69,7 @@ gulp.task('dist', ['bundle', 'html'], function() {});
 gulp.task('onChange', ['test', 'dist']);
 
 gulp.task('watch', function() {
-    return watch(scripts, function () {
+    return watch(src, function () {
       gulp.start('onChange');
     });
 });
