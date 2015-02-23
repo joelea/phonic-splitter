@@ -12,7 +12,8 @@ var src = 'src';
 var scripts = src + '/**/*.coffee';
 var test = build + '/test/**/*.js';
 var build = './build';
-var buildTest = build + '/test/**/*.js';
+var buildScripts = build + '/scripts';
+var buildTest = buildScripts + '/test/**/*.js';
 var buildDist = build + '/dist';
 
 var bundler = browserify(build + '/scripts/app.js');
