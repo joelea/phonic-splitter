@@ -20,7 +20,9 @@ graphenes = ['ay', 'sh', 'air', 'ea', 'ou', 'ice', 'isl', 'igh', 'er'].map(simpl
 split = (word) ->
   for graphene in graphenes
     if contains(word, graphene.word)
-      return flatten(intersperse(graphene.replacement, word.split(graphene.word).map(split)))
+      withoutGraphene = word.split(graphene.word).map(split)
+      grapheneReplaced = intersperse(graphene.replacement, withoutGraphene)
+      return flatten(grapheneReplaced)
 
   word.split('')
 
