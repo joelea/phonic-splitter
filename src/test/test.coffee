@@ -23,17 +23,6 @@ describe 'phonicSplitter', ->
   equivalent('shone', ['sh', 'o_e', 'n'])
   equivalent('lobe', ['l', 'o_e', 'b'])
 
-  #"shine" `splitsInto` ["sh", "i_e", "n"]
-  #"shine" `splitsInto` ["sh", "i_e", "n"]
-  #"hone" `splitsInto` ["h", "o_e", "n"]
-  #"lobe" `splitsInto` ["l", "o_e", "b"]
-  #"says" `splitsInto` ["s", "ay", "s"]
-  #"rifle" `splitsInto` ["r", "i", "f", "le"]
-  #"louder" `splitsInto` ["l", "ou", "d", "er"]
-  #"iceland" `splitsInto` ["ice", "l", "a", "n", "d"]
-  #"island" `splitsInto` ["isl", "a", "n", "d"]
-  #"gigh" `splitsInto` ["g", "igh"]
-
 describe 'intersperse', ->
 	it 'should leave an empty list empty', ->
 		expect(intersperse(1, [])).to.deep.equal([])
