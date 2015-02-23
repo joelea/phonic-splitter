@@ -1,8 +1,6 @@
 {contains, intersperse, flatten} = require('./lists')
+{alphabet, vowels, consonants} = require('./alphabet')
 
-alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
-vowels = 'aeiou'.split('')
-consonants = alphabet.filter( (letter) -> not contains(letter, vowels))
 magicEPairs = flatten(vowels.map (vowel) -> vowel + consonant for consonant in consonants)
 
 simpleGraphene = (letters) ->
@@ -25,8 +23,6 @@ split = (word) ->
       return flatten(intersperse(graphene.replacement, word.split(graphene.word).map(split)))
 
   word.split('')
-
-
 
 
 module.exports = {split, intersperse, flatten}
