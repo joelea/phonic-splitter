@@ -27,7 +27,8 @@ var bundle = function() {
 
 gulp.task('serve', ['dist'], function() {
   connect.server({
-    root: buildDist
+    root: buildDist,
+    livereload: true
   });
 });
 
@@ -66,7 +67,11 @@ gulp.task('html', ['clean'], function() {
 });
 
 gulp.task('dist', ['bundle', 'html'], function() {});
-gulp.task('onChange', ['test', 'dist']);
+gulp.task('onChange', ['test', 'reload']);
+
+gulp.task('reload', ['dist'], function() {
+  connect.reload();
+});
 
 gulp.task('watch', function() {
     return watch(src, function () {
