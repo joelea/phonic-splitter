@@ -1,4 +1,4 @@
-{intersperse, flatten} = require('../lists')
+{intersperse, flatten, crossProduct} = require('../lists')
 expect = require('chai').expect
 
 describe 'intersperse', ->
@@ -17,3 +17,10 @@ describe 'intersperse', ->
 describe 'flatten', ->
   it 'should flatten an array', ->
     expect(flatten([[1], [2,3], [4]])).to.deep.equal([1,2,3,4])
+
+describe 'crossProduct', ->
+  it 'should combine singleton arrays into a single array', ->
+    expect(crossProduct([1], [2])).to.deep.equal([[1,2]])
+
+  it 'should combine arrays', ->
+    expect(crossProduct([1,2], [3,4])).to.deep.equal([[1,3], [1,4], [2,3], [2,4]])

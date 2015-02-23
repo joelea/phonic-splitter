@@ -14,4 +14,10 @@ flatten = (list) ->
   else
     return list[0].concat(flatten(list[1..]))
 
-module.exports = {contains, intersperse, flatten}
+crossProduct = (as, bs) -> flatten(
+  for a in as
+    for b in bs
+      [a, b]
+  )
+
+module.exports = {contains, intersperse, flatten, crossProduct}
