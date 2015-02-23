@@ -28,4 +28,4 @@ split = (word) ->
   word.split('')
 
 
-module.exports = {split, intersperse, flatten}
+module.exports = {split}

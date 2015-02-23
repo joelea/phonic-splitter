@@ -11,9 +11,14 @@
     "gulp-watch": "^4.1.1"
   },
   "devDependencies": {
+    "browserify": "^9.0.3",
     "gulp-clean": "^0.3.1",
+    "gulp-util": "^3.0.3",
     "mocha": "^2.1.0",
-    "mocha-osx-reporter": "^0.1.2"
+    "mocha-osx-reporter": "^0.1.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.4.0"
   },
   "scripts": {
     "test": "gulp test"

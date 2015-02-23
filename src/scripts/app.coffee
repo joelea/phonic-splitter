@@ -1,0 +1,1 @@
+{split} = require('./phonic-splitter');
