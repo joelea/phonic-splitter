@@ -1,4 +1,4 @@
-{intersperse, flatten} = require('../phonic-splitter')
+{intersperse, flatten} = require('../lists')
 expect = require('chai').expect
 
 describe 'intersperse', ->
