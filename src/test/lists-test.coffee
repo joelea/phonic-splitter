@@ -1,6 +1,5 @@
+{intersperse, flatten} = require('../phonic-splitter')
 expect = require('chai').expect
-
-{split, intersperse, flatten} = require('../phonic-splitter')
 
 describe 'intersperse', ->
   it 'should leave an empty list empty', ->
