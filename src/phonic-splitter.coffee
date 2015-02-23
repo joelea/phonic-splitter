@@ -1,14 +1,18 @@
 {contains, intersperse, flatten} = require('./lists')
 {alphabet, vowels, consonants} = require('./alphabet')
 
-magicEPairs = flatten(vowels.map (vowel) -> vowel + consonant for consonant in consonants)
+magicEPairs = flatten(
+  for vowel in vowels
+    for consonant in consonants
+      {vowel, consonant}
+  )
 
 simpleGraphene = (letters) ->
   word: letters
   replacement: [letters]
 
 magicE = (prefix) ->
-  [vowel, consonant] = prefix
+  {vowel, consonant} = prefix
   return {
     word: vowel + consonant + 'e'
     replacement: [vowel + '_e', consonant]
