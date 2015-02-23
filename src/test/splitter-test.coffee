@@ -1,4 +1,4 @@
-{split, intersperse, flatten} = require('../phonic-splitter')
+{split} = require('../phonic-splitter')
 expect = require('chai').expect
 
 equivalent = (word, splitWord) ->
