@@ -19,6 +19,7 @@ describe 'phonicSplitter', ->
   equivalent('iceland', ['ice', 'l', 'a', 'n', 'd'])
   equivalent('island', ['isl', 'a', 'n', 'd'])
   equivalent('high', ['h', 'igh'])
+  equivalent('though', ['th', 'ough'])
   equivalent('shine', ['sh', 'i_e', 'n'])
   equivalent('shone', ['sh', 'o_e', 'n'])
   equivalent('lobe', ['l', 'o_e', 'b'])

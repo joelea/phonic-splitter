@@ -15,6 +15,7 @@ magicE = (prefix) ->
 magicEPairs = crossProduct(vowels, consonants)
 magicEgraphemes = magicEPairs.map(magicE)
 
+fourLetterGraphemes = ["ough"]
 threeLetterGraphemes = ["igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"]
 vowelPairs = crossProduct(vowels, vowels).map( ([a,b]) -> a + b )
 vowelsWithY = vowels.map( (vowel) -> vowel + "y" )
@@ -29,6 +30,7 @@ twoLetterGraphemes = ["ck", "ch", "dd", "ff", "ph", "gh", "gg",
 magicEgraphemes = magicEPairs.map(magicE)
 
 graphemes = flatten [
+  fourLetterGraphemes.map(createSimpleGrapheme),
   threeLetterGraphemes.map(createSimpleGrapheme),
   vowelPairs.map(createSimpleGrapheme),
   vowelsWithY.map(createSimpleGrapheme),
