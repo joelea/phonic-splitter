@@ -22,4 +22,5 @@ describe 'phonicSplitter', ->
   equivalent('though', ['th', 'ough'])
   equivalent('shine', ['sh', 'i_e', 'n'])
   equivalent('shone', ['sh', 'o_e', 'n'])
+  equivalent('pleasure', ['p', 'l', 'ea', 's', 'ure'])
   equivalent('lobe', ['l', 'o_e', 'b'])

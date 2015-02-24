@@ -16,7 +16,7 @@ magicEPairs = crossProduct(vowels, consonants)
 magicEgraphemes = magicEPairs.map(magicE)
 
 fourLetterGraphemes = ["ough"]
-threeLetterGraphemes = ["igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"]
+threeLetterGraphemes = ["ure", "igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"]
 vowelPairs = crossProduct(vowels, vowels).map( ([a,b]) -> a + b )
 vowelsWithY = vowels.map( (vowel) -> vowel + "y" )
 rBasedGraphemes = ["or", "ar", "er"]
