@@ -28,3 +28,6 @@ describe 'crossProduct', ->
 describe 'contains', ->
   it 'should be false if a list does not contain the element', ->
     expect(list([1,2,3]).contains(4)).to.be.false
+
+  it 'should be true if a list does contain the element', ->
+    expect(list([1,2,3]).contains(2)).to.be.true
