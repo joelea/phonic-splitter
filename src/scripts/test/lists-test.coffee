@@ -31,3 +31,15 @@ describe 'contains', ->
 
   it 'should be true if a list does contain the element', ->
     expect(list([1,2,3]).contains(2)).to.be.true
+
+  it 'should detect missing letters in strings', ->
+    expect(string('123').contains('4')).to.be.false
+
+  it 'should detect present letters in strings', ->
+    expect(string('123').contains('2')).to.be.true
+
+  it 'should detect present substrings in strings', ->
+    expect(string('1234').contains('23')).to.be.true
+
+  it 'should detect missing substrings in strings', ->
+    expect(string('1234').contains('24')).to.be.false
