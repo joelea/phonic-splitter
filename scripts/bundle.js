@@ -21,21 +21,21 @@
 
 },{"./phonic-splitter":4,"jquery":5}],2:[function(require,module,exports){
 (function() {
-  var alphabet, consonants, contains, isConsonant, isVowel, vowels;
+  var alphabet, consonants, isConsonant, isVowel, list, vowels;
 
-  contains = require('./lists').contains;
+  list = require('./lists').list;
 
   alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
   vowels = 'aeiou'.split('');
 
   isVowel = function(letter) {
-    return contains(letter, vowels);
+    return list(vowels).contains(letter);
   };
 
   isConsonant = (function(_this) {
     return function(letter) {
-      return contains(letter, consonants);
+      return list(consonants).contains(letter);
     };
   })(this);
 
@@ -55,28 +55,44 @@
 
 },{"./lists":3}],3:[function(require,module,exports){
 (function() {
-  var contains, crossProduct, flatten, intersperse;
+  var crossProduct, flatten, head, intersperse, list, string, tail;
 
-  contains = function(string, substring) {
-    return string.indexOf(substring) > -1;
+  head = function(list) {
+    return list[0];
+  };
+
+  tail = function(list) {
+    return list.slice(1);
+  };
+
+  string = function(string) {
+    return {
+      contains: function(substring) {
+        return string.indexOf(substring) > -1;
+      }
+    };
+  };
+
+  list = function(list) {
+    return {
+      contains: function(element) {
+        return list.indexOf(element) > -1;
+      }
+    };
   };
 
   intersperse = function(element, list) {
     if (list.length < 2) {
       return list;
-    } else {
-      return [list[0], element].concat(intersperse(element, list.slice(1)));
     }
+    return [head(list), element].concat(intersperse(element, tail(list)));
   };
 
   flatten = function(list) {
     if (list.length === 0) {
       return [];
-    } else if (list.length < 1) {
-      return list[0];
-    } else {
-      return list[0].concat(flatten(list.slice(1)));
     }
+    return list[0].concat(flatten(list.slice(1)));
   };
 
   crossProduct = function(as, bs) {
@@ -101,19 +117,22 @@
   };
 
   module.exports = {
-    contains: contains,
+    string: string,
+    list: list,
     intersperse: intersperse,
     flatten: flatten,
-    crossProduct: crossProduct
+    crossProduct: crossProduct,
+    head: head,
+    tail: tail
   };
 
 }).call(this);
 
 },{}],4:[function(require,module,exports){
 (function() {
-  var alphabet, consonants, contains, createSimpleGrapheme, crossProduct, flatten, graphemes, intersperse, magicE, magicEPairs, magicEgraphemes, rBasedGraphemes, ref, ref1, split, threeLetterGraphemes, twoLetterGraphemes, vowelPairs, vowels, vowelsWithY;
+  var alphabet, consonants, createSimpleGrapheme, crossProduct, flatten, graphemes, intersperse, magicE, magicEPairs, magicEgraphemes, rBasedGraphemes, ref, ref1, split, string, threeLetterGraphemes, twoLetterGraphemes, vowelPairs, vowels, vowelsWithY;
 
-  ref = require('./lists'), contains = ref.contains, intersperse = ref.intersperse, flatten = ref.flatten, crossProduct = ref.crossProduct;
+  ref = require('./lists'), string = ref.string, intersperse = ref.intersperse, flatten = ref.flatten, crossProduct = ref.crossProduct;
 
   ref1 = require('./alphabet'), alphabet = ref1.alphabet, vowels = ref1.vowels, consonants = ref1.consonants;
 
@@ -161,7 +180,7 @@
     var allButgraphemeSplit, grapheme, graphemeReplaced, i, len, withoutgrapheme;
     for (i = 0, len = graphemes.length; i < len; i++) {
       grapheme = graphemes[i];
-      if (contains(word, grapheme.target)) {
+      if (string(word).contains(grapheme.target)) {
         withoutgrapheme = word.split(grapheme.target);
         allButgraphemeSplit = withoutgrapheme.map(split);
         graphemeReplaced = intersperse(grapheme.replacement, allButgraphemeSplit);
