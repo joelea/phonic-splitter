@@ -5,5 +5,9 @@ format = (list) -> list.join(' - ')
 
 window.onWordInput = ->
   word = $('#word-input').val()
-  $('#split-result').text(format(split(word)))
+  result = $('#split-result')
+
+  result.text(format(split(word)))
+  result.fadeIn()
+
   return undefined

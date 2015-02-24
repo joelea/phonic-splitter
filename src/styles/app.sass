@@ -1,25 +1,44 @@
-$font-stack:    Helvetica, sans-serif;
+$font: 'ABeeZee', sans-serif;
+$background-color: white;
+$secondary-background-color: #dadada;
 
-$background-color: #1D7373;
-$secondary-background-color: #009999;
-
-$text-color: #FFAA00;
+$text-color: black;
+$font-size: 30px;
 
 body {
   background-color: $background-color;
   color: $text-color;
   text-align: center;
+  font-size: $font-size;
+  font-family: $font;
+}
+
+input {
+  border: 2px solid $secondary-background-color;
+  border-radius: 7px;
+
+  &:focus {
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+  }
 }
 
 #main-panel {
   display: inline-block;
   margin-top: 20%;
-  #instructions {}
+  font-size: $font-size;
+
   #word-input {
-    border: none;
+    background-color: $background-color;
     height: 40px;
     width: 100%;
-    background-color: $secondary-background-color;
     text-align: center;
+    color: $text-color;
+    font-size: $font-size;
+  }
+
+  #split-result {
+    display: none;
   }
 }
