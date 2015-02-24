@@ -1,4 +1,4 @@
-{intersperse, flatten, crossProduct} = require('../lists')
+{intersperse, flatten, crossProduct, list, string} = require('../lists')
 expect = require('chai').expect
 
 describe 'intersperse', ->
@@ -24,3 +24,7 @@ describe 'crossProduct', ->
 
   it 'should combine arrays', ->
     expect(crossProduct([1,2], [3,4])).to.deep.equal([[1,3], [1,4], [2,3], [2,4]])
+
+describe 'contains', ->
+  it 'should be false if a list does not contain the element', ->
+    expect(list([1,2,3]).contains(4)).to.be.false
