@@ -92,7 +92,7 @@
     if (list.length === 0) {
       return [];
     }
-    return list[0].concat(flatten(list.slice(1)));
+    return head(list).concat(flatten(tail(list)));
   };
 
   crossProduct = function(as, bs) {
@@ -130,7 +130,7 @@
 
 },{}],4:[function(require,module,exports){
 (function() {
-  var alphabet, consonants, createSimpleGrapheme, crossProduct, flatten, graphemes, intersperse, magicE, magicEPairs, magicEgraphemes, rBasedGraphemes, ref, ref1, split, string, threeLetterGraphemes, twoLetterGraphemes, vowelPairs, vowels, vowelsWithY;
+  var alphabet, consonants, createSimpleGrapheme, crossProduct, flatten, fourLetterGraphemes, graphemes, intersperse, magicE, magicEPairs, magicEgraphemes, rBasedGraphemes, ref, ref1, split, string, threeLetterGraphemes, twoLetterGraphemes, vowelPairs, vowels, vowelsWithY;
 
   ref = require('./lists'), string = ref.string, intersperse = ref.intersperse, flatten = ref.flatten, crossProduct = ref.crossProduct;
 
@@ -156,6 +156,8 @@
 
   magicEgraphemes = magicEPairs.map(magicE);
 
+  fourLetterGraphemes = ["ough"];
+
   threeLetterGraphemes = ["igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"];
 
   vowelPairs = crossProduct(vowels, vowels).map(function(arg) {
@@ -174,7 +176,7 @@
 
   magicEgraphemes = magicEPairs.map(magicE);
 
-  graphemes = flatten([threeLetterGraphemes.map(createSimpleGrapheme), vowelPairs.map(createSimpleGrapheme), vowelsWithY.map(createSimpleGrapheme), rBasedGraphemes.map(createSimpleGrapheme), magicEgraphemes, rBasedGraphemes.map(createSimpleGrapheme), twoLetterGraphemes.map(createSimpleGrapheme)]);
+  graphemes = flatten([fourLetterGraphemes.map(createSimpleGrapheme), threeLetterGraphemes.map(createSimpleGrapheme), vowelPairs.map(createSimpleGrapheme), vowelsWithY.map(createSimpleGrapheme), rBasedGraphemes.map(createSimpleGrapheme), magicEgraphemes, rBasedGraphemes.map(createSimpleGrapheme), twoLetterGraphemes.map(createSimpleGrapheme)]);
 
   split = function(word) {
     var allButgraphemeSplit, grapheme, graphemeReplaced, i, len, withoutgrapheme;
