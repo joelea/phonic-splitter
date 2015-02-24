@@ -15,7 +15,7 @@ intersperse = (element, list) ->
 flatten = (list) ->
   if list.length == 0 then return []
 
-  return list[0].concat(flatten(list[1..]))
+  return head(list).concat(flatten(tail(list)))
 
 crossProduct = (as, bs) -> flatten(
   for a in as
