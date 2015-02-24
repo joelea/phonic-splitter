@@ -5,6 +5,7 @@ var watch = require('gulp-watch');
 var clean = require('gulp-clean');
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
+var deploy = require('gulp-gh-pages');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
@@ -25,6 +26,10 @@ var bundle = function() {
     .pipe(gulp.dest(buildDist));
 };
 
+gulp.task('deploy', ['dist'], function() {
+  return gulp.src(buildDist)
+             .pipe(deploy())
+})
 gulp.task('serve', ['dist'], function() {
   connect.server({
     root: buildDist,
