@@ -2,17 +2,19 @@
 <html>
   <head>
     <script src='scripts/bundle.js'></script>
-  </head>
+    <link rel="stylesheet" type="text/css" href="styles/bundle.css">  </head>
   <body>
 
-    <p>Type a word into the box below and press enter</p>
-    <form id='word-input-form' action="javascript:onWordInput()">
-      <input type='text' id='word-input' />
-    </form>
+    <div id='main-panel'>
+      <p id='instructions'>Type a word into the box below and press enter</p>
+      <form id='word-input-form' action="javascript:onWordInput()" autocomplete='off'>
+        <input type='text' id='word-input' />
+      </form>
 
-    <br/>
+      <br/>
 
-    <p id='split-result'></p>
+      <p id='split-result'></p>
+    </div>
 
   </body>
 </html>

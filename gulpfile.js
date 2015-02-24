@@ -2,15 +2,19 @@ var gulp = require('gulp');
 var coffee = require('gulp-coffee');
 var mocha = require('gulp-mocha');
 var watch = require('gulp-watch');
-var clean = require('gulp-clean');
 var gutil = require('gulp-util');
 var connect = require('gulp-connect');
+var sass = require('gulp-sass');
 var deploy = require('gulp-gh-pages');
+var concatCss = require('gulp-concat-css');
+
+var del = require('del');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 
 var src = 'src';
+var srcSass = src + '/styles/**/*.sass';
 var scripts = src + '/**/*.coffee';
 var build = './build';
 var buildScripts = build + '/scripts';
@@ -26,10 +30,18 @@ var bundle = function() {
     .pipe(gulp.dest(buildDist));
 };
 
+gulp.task('sass', function() {
+  return gulp.src(srcSass)
+             .pipe(sass())
+             .pipe(concatCss('styles/bundle.css'))
+             .pipe(gulp.dest(buildDist));
+});
+
 gulp.task('deploy', ['dist'], function() {
   return gulp.src(buildDist + '/**/*')
-             .pipe(deploy())
-})
+             .pipe(deploy());
+});
+
 gulp.task('serve', ['dist'], function() {
   connect.server({
     root: buildDist,
@@ -45,8 +57,7 @@ gulp.task('bundle', ['build'], function() {
 });
 
 gulp.task('clean', function() {
-  return gulp.src(build, {read: false})
-             .pipe(clean());
+  return del(buildDist);
 });
 
 gulp.task('build', ['clean'], function() {
@@ -71,7 +82,7 @@ gulp.task('html', ['clean'], function() {
 
 });
 
-gulp.task('dist', ['bundle', 'html'], function() {});
+gulp.task('dist', ['bundle', 'html', 'sass'], function() {});
 gulp.task('onChange', ['test', 'reload']);
 
 gulp.task('reload', ['dist'], function() {
