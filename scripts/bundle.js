@@ -160,7 +160,7 @@
 
   fourLetterGraphemes = ["ough"];
 
-  threeLetterGraphemes = ["igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"];
+  threeLetterGraphemes = ["ure", "igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"];
 
   vowelPairs = crossProduct(vowels, vowels).map(function(arg) {
     var a, b;
