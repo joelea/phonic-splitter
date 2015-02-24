@@ -1,4 +1,4 @@
-{contains, intersperse, flatten, crossProduct} = require('./lists')
+{string, intersperse, flatten, crossProduct} = require('./lists')
 {alphabet, vowels, consonants} = require('./alphabet')
 
 createSimpleGrapheme = (letters) ->
@@ -40,7 +40,7 @@ graphemes = flatten [
 
 split = (word) ->
   for grapheme in graphemes
-    if contains(word, grapheme.target)
+    if string(word).contains(grapheme.target)
       withoutgrapheme = word.split(grapheme.target)
       allButgraphemeSplit = withoutgrapheme.map(split)
       graphemeReplaced = intersperse(grapheme.replacement, allButgraphemeSplit)

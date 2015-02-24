@@ -1,7 +1,11 @@
 head = (list) -> list[0]
 tail = (list) -> list[1..]
 
-contains = (string, substring) -> string.indexOf(substring) > -1
+string = (string) -> contains: (substring) ->
+  string.indexOf(substring) > -1
+
+list = (list) -> contains: (element) ->
+  list.indexOf(element) > -1
 
 intersperse = (element, list) ->
   if list.length < 2 then return list
@@ -19,4 +23,12 @@ crossProduct = (as, bs) -> flatten(
       [a, b]
   )
 
-module.exports = {contains, intersperse, flatten, crossProduct}
+module.exports = {
+  string,
+  list,
+  intersperse,
+  flatten,
+  crossProduct,
+  head,
+  tail,
+}
