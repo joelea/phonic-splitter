@@ -11,9 +11,11 @@
   };
 
   window.onWordInput = function() {
-    var word;
+    var result, word;
     word = $('#word-input').val();
-    $('#split-result').text(format(split(word)));
+    result = $('#split-result');
+    result.text(format(split(word)));
+    result.fadeIn();
     return void 0;
   };
 
