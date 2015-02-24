@@ -1,7 +1,7 @@
 {contains, intersperse, flatten, crossProduct} = require('./lists')
 {alphabet, vowels, consonants} = require('./alphabet')
 
-simpleGraphene = (letters) ->
+createSimpleGrapheme = (letters) ->
   target: letters
   replacement: [letters]
 
@@ -13,7 +13,7 @@ magicE = (prefix) ->
   }
 
 magicEPairs = crossProduct(vowels, consonants)
-magicEGraphenes = magicEPairs.map(magicE)
+magicEgraphemes = magicEPairs.map(magicE)
 
 threeLetterGraphemes = ["igh", "air", "ere", "ore", "dge", "tch", "isl", "ice"]
 vowelPairs = crossProduct(vowels, vowels).map( ([a,b]) -> a + b )
@@ -26,25 +26,25 @@ twoLetterGraphemes = ["ck", "ch", "dd", "ff", "ph", "gh", "gg",
                       "ve", "ve", "wh", "zz", "ze", "se", "sh",
                       "ch", "si", "ti", "ch", "th", "ng"]
 
-magicEGraphenes = magicEPairs.map(magicE)
+magicEgraphemes = magicEPairs.map(magicE)
 
-graphenes = flatten [
-  threeLetterGraphemes.map(simpleGraphene),
-  vowelPairs.map(simpleGraphene),
-  vowelsWithY.map(simpleGraphene),
-  rBasedGraphemes.map(simpleGraphene),
-  magicEGraphenes,
-  rBasedGraphemes.map(simpleGraphene),
-  twoLetterGraphemes.map(simpleGraphene),
+graphemes = flatten [
+  threeLetterGraphemes.map(createSimpleGrapheme),
+  vowelPairs.map(createSimpleGrapheme),
+  vowelsWithY.map(createSimpleGrapheme),
+  rBasedGraphemes.map(createSimpleGrapheme),
+  magicEgraphemes,
+  rBasedGraphemes.map(createSimpleGrapheme),
+  twoLetterGraphemes.map(createSimpleGrapheme),
 ]
 
 split = (word) ->
-  for graphene in graphenes
-    if contains(word, graphene.target)
-      withoutGraphene = word.split(graphene.target)
-      allButGrapheneSplit = withoutGraphene.map(split)
-      grapheneReplaced = intersperse(graphene.replacement, allButGrapheneSplit)
-      return flatten(grapheneReplaced)
+  for grapheme in graphemes
+    if contains(word, grapheme.target)
+      withoutgrapheme = word.split(grapheme.target)
+      allButgraphemeSplit = withoutgrapheme.map(split)
+      graphemeReplaced = intersperse(grapheme.replacement, allButgraphemeSplit)
+      return flatten(graphemeReplaced)
 
   word.split('')
 
