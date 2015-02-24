@@ -27,7 +27,7 @@ var bundle = function() {
 };
 
 gulp.task('deploy', ['dist'], function() {
-  return gulp.src(buildDist)
+  return gulp.src(buildDist + '/**/*')
              .pipe(deploy())
 })
 gulp.task('serve', ['dist'], function() {
