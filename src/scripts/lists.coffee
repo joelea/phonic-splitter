@@ -9,8 +9,6 @@ intersperse = (element, list) ->
 flatten = (list) ->
   if list.length == 0
     return []
-  else if list.length < 1
-    return list[0]
   else
     return list[0].concat(flatten(list[1..]))
 
