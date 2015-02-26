@@ -7,9 +7,11 @@ var connect = require('gulp-connect');
 var sass = require('gulp-sass');
 var deploy = require('gulp-gh-pages');
 var concatCss = require('gulp-concat-css');
+var uglify = require('gulp-uglify');
 
 var del = require('del');
 var source = require('vinyl-source-stream');
+var paths = require('vinyl-paths');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 
@@ -30,7 +32,7 @@ var bundle = function() {
     .pipe(gulp.dest(buildDist));
 };
 
-gulp.task('sass', function() {
+gulp.task('sass', ['clean'], function() {
   return gulp.src(srcSass)
              .pipe(sass())
              .pipe(concatCss('styles/bundle.css'))
@@ -49,15 +51,17 @@ gulp.task('serve', ['dist'], function() {
   });
 });
 
-gulp.task('bundle', ['build'], function() {
+gulp.task('bundle', ['test', 'build'], function() {
   return bundler.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('scripts/bundle.js'))
+    .pipe(uglify())
     .pipe(gulp.dest(buildDist));
 });
 
 gulp.task('clean', function() {
-  return del(buildDist);
+  return gulp.src(buildDist)
+             .pipe(paths(del));
 });
 
 gulp.task('build', ['clean'], function() {
@@ -89,7 +93,7 @@ gulp.task('reload', ['dist'], function() {
   connect.reload();
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['clean'], function() {
     return watch(src, function () {
       gulp.start('onChange');
     });
