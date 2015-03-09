@@ -7,8 +7,8 @@ valueOf = (queryParam) ->
 
 parseUrl = (url) ->
   returnObject = {}
-  queryParam = url.slice(url.indexOf('?') + 1)
-  returnObject[keyOf(queryParam)] = valueOf(queryParam)
+  queryParams = url.slice(url.indexOf('?') + 1)
+  queryParams.split('&').map (queryParam) -> returnObject[keyOf(queryParam)] = valueOf(queryParam)
   return returnObject
 
 module.exports = {parseUrl}

@@ -9,3 +9,8 @@ describe 'parseUrl', ->
   it 'should contain a boolean query parameter', ->
     url = parseUrl 'www.home.com/foo?bar=true'
     expect(url.bar).to.be.true
+
+  it 'should split out multiple params', ->
+    url = parseUrl 'www.home.com/foo?hello=world&bar=true'
+    expect(url.bar).to.be.true
+    expect(url.hello).to.eql('world')
