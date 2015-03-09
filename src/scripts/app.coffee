@@ -3,16 +3,16 @@
 $ = require('jquery')
 
 format = (list) -> list.join(' - ')
+wordInput = -> $('#word-input')
 
 $(document).ready ->
   url = parseUrl(window.location.href)
   if url.initial?
-    $('#word-input').val(url.initial)
+    wordInput().val(url.initial)
     window.onWordInput()
 
-
 window.onWordInput = ->
-  word = $('#word-input').val()
+  word = wordInput().val()
   result = $('#split-result')
 
   result.text(format(split(word)))
