@@ -1,14 +1,15 @@
 {split} = require('./phonic-splitter')
 {parseUrl} = require('./urls')
+URI = require('URIjs')
 $ = require('jquery')
 
 format = (list) -> list.join(' - ')
 wordInput = -> $('#word-input')
 
 $(document).ready ->
-  url = parseUrl(window.location.href)
-  if url.initial?
-    wordInput().val(url.initial)
+  initialWord = URI(window.location.href).query(true).initial
+  if initialWord
+    wordInput().val(initialWord)
     window.onWordInput()
 
 window.onWordInput = ->
