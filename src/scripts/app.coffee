@@ -10,7 +10,7 @@ setInitialWord = (word) ->
 
 $(document).ready ->
   initialWord = URI(window.location.href).query(true).initial
-  if initialWord
+  if initialWord?
     wordInput().val(initialWord)
     window.onWordInput()
 
@@ -22,4 +22,5 @@ window.onWordInput = ->
   result.text(format(split(word)))
   result.fadeIn()
 
+  # Required to stay on the same page after submitting form
   return undefined
