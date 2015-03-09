@@ -1,8 +1,10 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function() {
-  var $, format, split;
+  var $, format, parseUrl, split, wordInput;
 
   split = require('./phonic-splitter').split;
+
+  parseUrl = require('./urls').parseUrl;
 
   $ = require('jquery');
 
@@ -10,9 +12,22 @@
     return list.join(' - ');
   };
 
+  wordInput = function() {
+    return $('#word-input');
+  };
+
+  $(document).ready(function() {
+    var url;
+    url = parseUrl(window.location.href);
+    if (url.initial != null) {
+      wordInput().val(url.initial);
+      return window.onWordInput();
+    }
+  });
+
   window.onWordInput = function() {
     var result, word;
-    word = $('#word-input').val();
+    word = wordInput().val();
     result = $('#split-result');
     result.text(format(split(word)));
     result.fadeIn();
@@ -21,7 +36,7 @@
 
 }).call(this);
 
-},{"./phonic-splitter":4,"jquery":5}],2:[function(require,module,exports){
+},{"./phonic-splitter":4,"./urls":5,"jquery":6}],2:[function(require,module,exports){
 (function() {
   var alphabet, consonants, isConsonant, isVowel, list, vowels;
 
@@ -201,6 +216,42 @@
 }).call(this);
 
 },{"./alphabet":2,"./lists":3}],5:[function(require,module,exports){
+(function() {
+  var keyOf, parseUrl, valueOf;
+
+  keyOf = function(queryParam) {
+    return queryParam.split('=')[0];
+  };
+
+  valueOf = function(queryParam) {
+    var rawValue;
+    rawValue = queryParam.split('=')[1];
+    if (rawValue === 'true') {
+      return true;
+    }
+    if (rawValue === 'false') {
+      return false;
+    }
+    return rawValue;
+  };
+
+  parseUrl = function(url) {
+    var queryParams, returnObject;
+    returnObject = {};
+    queryParams = url.slice(url.indexOf('?') + 1);
+    queryParams.split('&').map(function(queryParam) {
+      return returnObject[keyOf(queryParam)] = valueOf(queryParam);
+    });
+    return returnObject;
+  };
+
+  module.exports = {
+    parseUrl: parseUrl
+  };
+
+}).call(this);
+
+},{}],6:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.3
  * http://jquery.com/
