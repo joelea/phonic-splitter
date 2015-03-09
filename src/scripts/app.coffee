@@ -4,6 +4,9 @@ $ = require('jquery')
 
 format = (list) -> list.join(' - ')
 wordInput = -> $('#word-input')
+setInitialWord = (word) ->
+  newUrl = URI(window.location.href).query(initial: word)
+  history.pushState({}, "", newUrl)
 
 $(document).ready ->
   initialWord = URI(window.location.href).query(true).initial
@@ -13,6 +16,7 @@ $(document).ready ->
 
 window.onWordInput = ->
   word = wordInput().val()
+  setInitialWord(word)
   result = $('#split-result')
 
   result.text(format(split(word)))
