@@ -55,7 +55,6 @@ gulp.task('bundle', ['test', 'build'], function() {
   return bundler.bundle()
     .on('error', gutil.log.bind(gutil, 'Browserify Error'))
     .pipe(source('scripts/bundle.js'))
-    .pipe(uglify())
     .pipe(gulp.dest(buildDist));
 });
 
