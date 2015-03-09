@@ -1,5 +1,4 @@
 {split} = require('./phonic-splitter')
-{parseUrl} = require('./urls')
 URI = require('URIjs')
 $ = require('jquery')
 
